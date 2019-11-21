@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-
-import LineInput from "./LineInput.js";
+import React from "react";
+import Button from "@material-ui/core/Button";
+import LineInput from "./LineInput";
 import AreaInput from "./AreaInput";
 const submitForm = e => {
   e.preventDefault();
@@ -16,7 +16,9 @@ const Form = () => {
       <hr />
       <AreaInput />
       <AreaInput />
-      <input className="bottomInput" type="submit" value="Submit" />
+      <Button className="bottomInput" variant="outlined" color="primary" type="submit">
+        Submit
+      </Button>
     </form>
   );
 };

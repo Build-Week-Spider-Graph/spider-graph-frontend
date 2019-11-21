@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 const AreaInput = () => {
   const [areaState, setAreaState] = useState({ areaLabel: "" });
   const [formState, setFormState] = useState(["", "", ""]);
@@ -11,9 +13,8 @@ const AreaInput = () => {
   };
   return (
     <div>
-      <label htmlFor="label1">Area Label </label>
-      <input
-        type="text"
+      <TextField
+        label="Area Label"
         name="areaLabel"
         id="areaLabel"
         value={areaState.areaLabel}
@@ -23,9 +24,9 @@ const AreaInput = () => {
         const tickId = `${idx}`;
         return (
           <div key={`tick-${idx}`}>
-            <label htmlFor={tickId}>{`Point to mark ${idx + 1} `}</label>
-            <input
-              type="text"
+            <TextField
+              htmlFor={tickId}
+              label={`Point to mark ${idx + 1} `}
               name={tickId}
               id={tickId}
               data-idx={idx}
@@ -36,7 +37,14 @@ const AreaInput = () => {
           </div>
         );
       })}
-      <button type="button" value="Add New Point" onClick={addPoint} >Add New Point</button>
+      <Button className="bottomInput"
+        variant="outlined"
+        color="primary"
+        value="Add New Point"
+        onClick={addPoint}
+      >
+        Add New Point
+      </Button>
     </div>
   );
 };

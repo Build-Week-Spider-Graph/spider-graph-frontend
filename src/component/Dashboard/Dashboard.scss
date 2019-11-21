@@ -177,6 +177,7 @@ form {
   text-shadow: 1px 1px black;
   padding-left: 10px;
   min-width: 200px;
+  padding-bottom: 20px;
 }
 button {
     border: none;
@@ -199,17 +200,18 @@ button {
 }
 
 .bottomInput {
+    
     border: none;
     padding: 5px 0;
     width: 175px;
     margin: 0 auto;
-    background: #62BFED;
+    background: #62BFED !important;
     color: white;
     transition: all .3s;
     border-radius: 3px;
     text-shadow: 1px 1px 1px black;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 5px !important;
 
     &:hover {
         background: #62BFED;
@@ -222,4 +224,13 @@ form div {
 }
 #root {
     margin-top: 100px;
+}
+span {
+    color: white;
+}
+input {
+    color: white !important;
+}
+label {
+    color: white !important;
 }
