@@ -37,21 +37,31 @@ const RadarChart = (props) => {
     setPointArray(p)
   }, [props.graphids, props.graphidlines]);
   return (<>
-    <div ref={svgRef}></div>
-    <button onClick={() => console.log(props, graphArray, pointArray)}>check state</button>
-    <button onClick={() => console.log(props)}>props</button>
+    <div className ="radarChart" ref={svgRef}></div>
+    <div className ="buttonContainer">
+    <button className="displayDataButton" onClick={() => props.graphData()}>fetch graphs</button>
+    <button className="displayDataButton" onClick={() => props.graphIdData(1)}>fetch graph-id</button>
+    <button className="displayDataButton" onClick={() => props.graphIdLinesData(1)}>fetch graph-id / lines</button>
+    <button className="displayDataButton" onClick={() => props.graphIdLinesIdData(1, 1)}>fetch graph-id / line-id</button>
+    <button className="displayDataButton" onClick={() => props.graphIdAreasData(1)}>fetch graph-id / areas</button>
+    <button className="displayDataButton" onClick={() => props.graphIdAreasIdData(1, 2)}>fetch graph-id / areas-id</button>
+    <button className="displayDataButton" onClick={() => props.graphIdLinesIdPointsData(1, 2)}>fetch graph-id / lines-id / points</button>
+    <button className="displayDataButton" onClick={() => props.graphIdAreasIdPointsData(1, 2)}>fetch graph-id / areas-id / points</button>
+    <button className="displayDataButton" onClick={() => console.log(props)}>check state</button>
 
-    <button onClick={() => console.log(props.graphs[0].id)}>graph id</button>
-    <button onClick={() => console.log(props.graphs[0].title)}>graph title</button>
+    <button className="displayDataButton" onClick={() => console.log(props, graphArray, pointArray)}>check state</button>
+    <button className="displayDataButton" onClick={() => console.log(props)}>props</button>
 
-    <button onClick={() => console.log(props.graphidlines[0].id)}>line id</button>
-    <button onClick={() => console.log(props.graphidlines[0].label)}>line label</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphs[0].id)}>graph id</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphs[0].title)}>graph title</button>
 
-    <button onClick={() => console.log(props.graphidlinesidpoints[0].id)}>tick id</button>
-    <button onClick={() => console.log(props.graphidlinesidpoints[0].label)}>tick label</button>
-    <button onClick={() => console.log(props.graphidlinesidpoints[0].position)}>tick position</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphidlines[0].id)}>line id</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphidlines[0].label)}>line label</button>
 
-    <button onClick={() => console.log(props.graphidlinesidpoints[0].label)}>tick label</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphidlinesidpoints[0].id)}>tick id</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphidlinesidpoints[0].label)}>tick label</button>
+    <button className="displayDataButton" onClick={() => console.log(props.graphidlinesidpoints[0].position)}>tick position</button>
+    </div>
   
   </>
   );
@@ -85,15 +95,6 @@ const dataTest = {
         Channel: "3rd Party"
       },
   };
-
-
-
-
-
-
-
-
-
 
 
 

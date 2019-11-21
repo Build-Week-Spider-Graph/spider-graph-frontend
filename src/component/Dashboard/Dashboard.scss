@@ -6,7 +6,7 @@
     background-color: white;
     height: 100vh;
     // padding-bottom: 50px;
-
+    margin-top: 200px;
     h3 {
         font-size: 1.6rem;
     }
@@ -27,7 +27,7 @@
     min-width: 1250px;
     background: #62BFED;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, .8);
-    min-height: 1200px;
+    min-height: 1400px;
 
     
     .box {
@@ -233,4 +233,24 @@ input {
 }
 label {
     color: white !important;
+}
+.radarChart {
+    margin-bottom: 200px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    background-color: #5c5c5c;
+    box-shadow: 5px 5px 10px black;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding-top: 30px;
+    margin-bottom: 400px;
+    padding-bottom: 30px;
+}
+
+.displayDataButton {
+    margin-top: 10px !important;
 }
