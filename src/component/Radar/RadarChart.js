@@ -37,19 +37,67 @@ const RadarChart = (props) => {
     setPointArray(p)
   }, [props.graphids, props.graphidlines]);
   return (<>
-    <button onClick={() => props.graphData()}>fetch graphs</button>
-    <button onClick={() => props.graphIdData(1)}>fetch graph-id</button>
-    <button onClick={() => props.graphIdLinesData(1)}>fetch graph-id / lines</button>
-    <button onClick={() => props.graphIdLinesIdData(1, 1)}>fetch graph-id / line-id</button>
-    <button onClick={() => props.graphIdAreasData(1)}>fetch graph-id / areas</button>
-    <button onClick={() => props.graphIdAreasIdData(1, 2)}>fetch graph-id / areas-id</button>
-    <button onClick={() => props.graphIdLinesIdPointsData(1, 2)}>fetch graph-id / lines-id / points</button>
-    <button onClick={() => props.graphIdAreasIdPointsData(1, 2)}>fetch graph-id / areas-id / points</button>
+    <div ref={svgRef}></div>
     <button onClick={() => console.log(props, graphArray, pointArray)}>check state</button>
-  <div ref={svgRef}></div>
+    <button onClick={() => console.log(props)}>props</button>
+
+    <button onClick={() => console.log(props.graphs[0].id)}>graph id</button>
+    <button onClick={() => console.log(props.graphs[0].title)}>graph title</button>
+
+    <button onClick={() => console.log(props.graphidlines[0].id)}>line id</button>
+    <button onClick={() => console.log(props.graphidlines[0].label)}>line label</button>
+
+    <button onClick={() => console.log(props.graphidlinesidpoints[0].id)}>tick id</button>
+    <button onClick={() => console.log(props.graphidlinesidpoints[0].label)}>tick label</button>
+    <button onClick={() => console.log(props.graphidlinesidpoints[0].position)}>tick position</button>
+
+    <button onClick={() => console.log(props.graphidlinesidpoints[0].label)}>tick label</button>
+  
   </>
   );
 };
+
+
+
+const dataTest = {
+  id: 0,
+  title: "Graph Title",
+  lines: 
+    {
+      id: 0,
+      label: "Customer Segment",
+      tick: [
+        { id: 0, label: "Business", position: 1 },
+        { id: 1, label: "Education", position: 2 },
+        { id: 2, label: "SME", position: 3 },
+        { id: 3, label: "Entertainment", position: 4 },
+        { id: 4, label: "Healthcare", position: 5 }
+      ]
+    },
+    areas: 
+      {
+        "Customer Segment": "SME",
+        Product: "Dashboard",
+        Content: "Security",
+        Experience: "Proficient",
+        "New Business": "SDL Tool",
+        Geographies: "Australia",
+        Channel: "3rd Party"
+      },
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
 const mapStateToProps = state => {
   return {
       isFetching: state.isFetching,
