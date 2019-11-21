@@ -42,6 +42,7 @@ const Dashboard = ({
                 <h3 className="graphTitle">Spider Graph</h3>
                 <RadarChart />
                 </div>
+                <Form />
             </div>
         </div>
       </div>

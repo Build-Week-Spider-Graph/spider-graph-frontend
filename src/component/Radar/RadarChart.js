@@ -29,18 +29,10 @@ const RadarChart = (props) => {
     console.log(graphArray, "set graph array")
   }, [props]);
 
-  return (<>
-    <button onClick={() => props.graphData()}>fetch graphs</button>
-    <button onClick={() => props.graphIdData(1)}>fetch graph-id</button>
-    <button onClick={() => props.graphIdLinesData(1)}>fetch graph-id / lines</button>
-    <button onClick={() => props.graphIdLinesIdData(1, 1)}>fetch graph-id / line-id</button>
-    <button onClick={() => props.graphIdAreasData(1)}>fetch graph-id / areas</button>
-    <button onClick={() => props.graphIdAreasIdData(1, 2)}>fetch graph-id / areas-id</button>
-    <button onClick={() => props.graphIdLinesIdPointsData(1, 2)}>fetch graph-id / lines-id / points</button>
-    <button onClick={() => props.graphIdAreasIdPointsData(1, 2)}>fetch graph-id / areas-id / points</button>
-    <button onClick={() => console.log(props)}>check state</button>
-  <div ref={svgRef}></div>
-  </>
+  return (
+    <>
+      <div ref={svgRef}></div>
+    </>
   );
 };
 
