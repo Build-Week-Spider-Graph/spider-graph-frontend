@@ -10,12 +10,38 @@ import {graphData, graphIdData, graphIdLinesData, graphIdLinesIdData, graphIdAre
 const RadarChart = (props) => {
   const [graphArray, setGraphArray] = useState({})
   const [pointArray, setPointArray] = useState()
+  const [finalData, setFinalData] = useState();
   let svgRef = useRef(null);
   const data = chartData;
-  const radarChartOptions = generateOptions(data.lines, data.lines);
-  useEffect(() => {
-    drawRadarChart(".radarChart1", data.areas, radarChartOptions, svgRef);
-  }, [data, radarChartOptions]);
+  
+
+  // useEffect(() => {
+  //   const lines = graphArray.lines.map(line => {
+  //     return {
+  //       ...line,
+  //       tick: pointArray.filter(point => point.line_id === line.id)
+  //     };
+  //   });
+  //   const areas = graphArray.areas.map(area => {
+  //     const fields = lines.map(line => line.label);
+  //     const points = pointArray.filter(point => area.id === point.area_id);
+  //     const obj = {}
+  //     fields.forEach((field, i) => {
+  //        obj[field] = points[i].label
+  //     })
+  //     return {
+  //       ...area,
+  //       points: obj
+  //     };
+  //   });
+  //   const data = {
+  //     title: graphArray.title,
+  //     lines, 
+  //     areas
+  //   };
+  //   setFinalData(data)
+  //   }, [graphArray, pointArray])
+
   useEffect(() => {
     let p = []
     if(props.graphids)
@@ -36,6 +62,15 @@ const RadarChart = (props) => {
     })
     setPointArray(p)
   }, [props.graphids, props.graphidlines]);
+  
+
+
+    // useEffect(() => {
+    //   const radarChartOptions = generateOptions(finalData.lines)
+    //   drawRadarChart('.radarChart1', finalData.areas, radarChartOptions, svgRef)
+    // }, [finalData]);
+   
+
   return (<>
     <div className ="radarChart" ref={svgRef}></div>
     <div className ="buttonContainer">
@@ -47,9 +82,9 @@ const RadarChart = (props) => {
     <button className="displayDataButton" onClick={() => props.graphIdAreasIdData(1, 2)}>fetch graph-id / areas-id</button>
     <button className="displayDataButton" onClick={() => props.graphIdLinesIdPointsData(1, 2)}>fetch graph-id / lines-id / points</button>
     <button className="displayDataButton" onClick={() => props.graphIdAreasIdPointsData(1, 2)}>fetch graph-id / areas-id / points</button>
-    <button className="displayDataButton" onClick={() => console.log(props)}>check state</button>
+    <button className="displayDataButton" onClick={() => console.log(props)}>check props</button>
 
-    <button className="displayDataButton" onClick={() => console.log(props, graphArray, pointArray)}>check state</button>
+    <button className="displayDataButton" onClick={() => console.log(props, graphArray, pointArray)}>graph array point array</button>
     <button className="displayDataButton" onClick={() => console.log(props)}>props</button>
 
     <button className="displayDataButton" onClick={() => console.log(props.graphs[0].id)}>graph id</button>
@@ -66,38 +101,6 @@ const RadarChart = (props) => {
   </>
   );
 };
-
-
-
-const dataTest = {
-  id: 0,
-  title: "Graph Title",
-  lines: 
-    {
-      id: 0,
-      label: "Customer Segment",
-      tick: [
-        { id: 0, label: "Business", position: 1 },
-        { id: 1, label: "Education", position: 2 },
-        { id: 2, label: "SME", position: 3 },
-        { id: 3, label: "Entertainment", position: 4 },
-        { id: 4, label: "Healthcare", position: 5 }
-      ]
-    },
-    areas: 
-      {
-        "Customer Segment": "SME",
-        Product: "Dashboard",
-        Content: "Security",
-        Experience: "Proficient",
-        "New Business": "SDL Tool",
-        Geographies: "Australia",
-        Channel: "3rd Party"
-      },
-  };
-
-
-
 
 const mapStateToProps = state => {
   return {

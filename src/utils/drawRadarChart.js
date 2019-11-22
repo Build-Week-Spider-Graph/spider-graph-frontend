@@ -38,7 +38,7 @@ const drawRadarChart = (id, data, options, svgRef) => {
     data = data.map(function(row) {
       var newRow = {};
       fields.map(function(key) {
-        return (newRow[key] = row[key]);
+        return (newRow[key] = row.points[key]);
       });
       return newRow;
     });
