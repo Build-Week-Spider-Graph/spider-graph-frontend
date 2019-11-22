@@ -2,17 +2,13 @@ import * as d3 from "d3";
 
 const generateOptions = data => {
   // create the 'arms' from the data
-  const fields = data.map(line => {
-    return line.label;
-  });
+  const fields = data.map(line => line.label);
 
   // create the scale, mapping onto each arm from data
   const scalesAndAxes = {};
   fields.forEach((field, i) => {
     let scaleMapping = {};
-    const newScale = data[i].tick.map(tick => {
-      return tick.label;
-    });
+    const newScale = data[i].tick.map(tick => tick.label);
     // give padding so the data doesn't start at the origin
     newScale.unshift("  ");
     scaleMapping.scale = d3.scaleBand().domain(newScale);

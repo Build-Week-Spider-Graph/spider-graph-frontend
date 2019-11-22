@@ -5,7 +5,7 @@ const drawRadarChart = (id, data, options, svgRef) => {
     w: 800, //Width of the circle
     h: 600, //Height of the circle
     margin: { top: 150, right: 100, bottom: 150, left: 100 }, //The margins of the SVG
-    labelFactor: 1.25, //How much farther than the radius of the outer circle should the labels be placed
+    labelFactor: 1.1, //How much farther than the radius of the outer circle should the labels be placed
     wrapWidth: 80, //The number of pixels after which a label needs to be given a new line
     opacityArea: 0.35, //The opacity of the area of the blob
     dotRadius: 4, //The size of the colored circles of each blog
@@ -38,7 +38,7 @@ const drawRadarChart = (id, data, options, svgRef) => {
     data = data.map(function(row) {
       var newRow = {};
       fields.map(function(key) {
-        return (newRow[key] = row[key]);
+        return (newRow[key] = row.points[key]);
       });
       return newRow;
     });
@@ -159,7 +159,7 @@ const drawRadarChart = (id, data, options, svgRef) => {
           (i * angleSlice < 2 || i * angleSlice > 5 ? "rotate(180)" : "")
         );
       })
-      // .attr("dy", "1em")
+      .attr("dy", ".01em")
       // .attr("x", function(d, i) {
       //   return (
       //     radius * cfg.labelFactor * Math.cos(angleSlice * i - Math.PI / 2)
