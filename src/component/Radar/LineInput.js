@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 const LineInput = () => {
-  const [labelState, setLabelState] = useState({
+  const [state, setState] = useState({
     lineLabel: "",
     ticks: [
       {
@@ -16,25 +16,26 @@ const LineInput = () => {
       }
     ]
   });
-  console.log(labelState, "label state");
-  const handleLabelChange = e =>
-    setLabelState({
-      ...labelState,
-      [e.target.name]: e.target.value
-    });
-  const handleTickChange = e => {
-    const updatedTicks = { ...labelState };
-    updatedTicks[e.target.name][e.target.id].tickLabel = e.target.value;
-    setLabelState({
-      ...updatedTicks
-    });
+  const handleChange = e => {
+    if (e.target.name === "lineLabel") {
+      setState({
+        ...state,
+        [e.target.name]: e.target.value
+      });
+    } else {
+      const updatedTicks = { ...state };
+      updatedTicks[e.target.name][e.target.id].tickLabel = e.target.value;
+      setState({
+        ...updatedTicks
+      });
+    }
   };
+
   const addTick = e => {
-    const newTick = { tickLabel: "" };
-    const updatedTicks = { ...labelState };
-    const indexToGo = labelState.ticks.length;
-    updatedTicks["ticks"][indexToGo] = newTick;
-    setLabelState({
+    const updatedTicks = { ...state };
+    const indexToGo = state.ticks.length;
+    updatedTicks["ticks"][indexToGo] = { tickLabel: "" };
+    setState({
       ...updatedTicks
     });
   };
@@ -44,10 +45,10 @@ const LineInput = () => {
         label="Line Label"
         name="lineLabel"
         id="label1"
-        value={labelState.lineLabel}
-        onChange={handleLabelChange}
+        value={state.lineLabel}
+        onChange={handleChange}
       />
-      {labelState.ticks.map((val, idx) => {
+      {state.ticks.map((val, idx) => {
         const tickId = `${idx}`;
         return (
           <div key={`tick-${idx}`}>
@@ -55,15 +56,20 @@ const LineInput = () => {
               label={`Tick Label ${idx + 1} `}
               name={"ticks"}
               id={tickId}
-              data-idx={tickId}
-              value={labelState.ticks[idx].label}
+              value={state.ticks[idx].label}
               className="ticks"
-              onChange={handleTickChange}
+              onChange={handleChange}
             />
           </div>
         );
       })}
-      <Button className="bottomInput" variant="outlined" color="primary" name="ticks" onClick={addTick}>
+      <Button
+        className="bottomInput"
+        variant="outlined"
+        color="primary"
+        name="ticks"
+        onClick={addTick}
+      >
         Add New Tick
       </Button>
     </div>
