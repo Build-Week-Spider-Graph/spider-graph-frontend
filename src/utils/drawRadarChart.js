@@ -159,7 +159,7 @@ const drawRadarChart = (id, data, options, svgRef) => {
           (i * angleSlice < 2 || i * angleSlice > 5 ? "rotate(180)" : "")
         );
       })
-      .attr("dy", "1em")
+      // .attr("dy", "1em")
       // .attr("x", function(d, i) {
       //   return (
       //     radius * cfg.labelFactor * Math.cos(angleSlice * i - Math.PI / 2)
