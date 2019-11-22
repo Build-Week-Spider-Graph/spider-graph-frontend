@@ -3,13 +3,12 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 const AreaInput = () => {
   const [areaState, setAreaState] = useState({ areaLabel: "" });
-  const [formState, setFormState] = useState(["", "", ""]);
-  console.log(areaState, "area change");
+  const [inputNumState, setInputNumState] = useState(["", "", ""]);
   const handleChange = e => {
     setAreaState({ ...areaState, [e.target.name]: e.target.value });
   };
   const addPoint = e => {
-    setFormState([...formState, ""]);
+    setInputNumState([...inputNumState, ""]);
   };
   return (
     <div>
@@ -20,7 +19,7 @@ const AreaInput = () => {
         value={areaState.areaLabel}
         onChange={handleChange}
       />
-      {formState.map((val, idx) => {
+      {inputNumState.map((val, idx) => {
         const tickId = `${idx}`;
         return (
           <div key={`tick-${idx}`}>
@@ -37,7 +36,8 @@ const AreaInput = () => {
           </div>
         );
       })}
-      <Button className="bottomInput"
+      <Button
+        className="bottomInput"
         variant="outlined"
         color="primary"
         value="Add New Point"
