@@ -8,39 +8,40 @@ import {graphData, graphIdData, graphIdLinesData, graphIdLinesIdData, graphIdAre
 
 
 const RadarChart = (props) => {
-  const [graphArray, setGraphArray] = useState({})
+  const [graphArray, setGraphArray] = useState()
   const [pointArray, setPointArray] = useState()
   const [finalData, setFinalData] = useState();
   let svgRef = useRef(null);
   const data = chartData;
   
 
-  // useEffect(() => {
-  //   const lines = graphArray.lines.map(line => {
-  //     return {
-  //       ...line,
-  //       tick: pointArray.filter(point => point.line_id === line.id)
-  //     };
-  //   });
-  //   const areas = graphArray.areas.map(area => {
-  //     const fields = lines.map(line => line.label);
-  //     const points = pointArray.filter(point => area.id === point.area_id);
-  //     const obj = {}
-  //     fields.forEach((field, i) => {
-  //        obj[field] = points[i].label
-  //     })
-  //     return {
-  //       ...area,
-  //       points: obj
-  //     };
-  //   });
-  //   const data = {
-  //     title: graphArray.title,
-  //     lines, 
-  //     areas
-  //   };
-  //   setFinalData(data)
-  //   }, [graphArray, pointArray])
+  useEffect(() => {
+    if(graphArray){
+    const lines = graphArray.lines.map(line => {
+      return {
+        ...line,
+        tick: pointArray.filter(point => point.line_id === line.id)
+      };
+    });
+    const areas = graphArray.areas.map(area => {
+      const fields = lines.map(line => line.label);
+      const points = pointArray.filter(point => area.id === point.area_id);
+      const obj = {}
+      fields.forEach((field, i) => {
+         obj[field] = points[i].label
+      })
+      return {
+        ...area,
+        points: obj
+      };
+    });
+    const data = {
+      title: graphArray.title,
+      lines, 
+      areas
+    };
+    setFinalData(data)}
+    }, [graphArray, pointArray])
 
   useEffect(() => {
     let p = []
@@ -65,10 +66,11 @@ const RadarChart = (props) => {
   
 
 
-    // useEffect(() => {
-    //   const radarChartOptions = generateOptions(finalData.lines)
-    //   drawRadarChart('.radarChart1', finalData.areas, radarChartOptions, svgRef)
-    // }, [finalData]);
+    useEffect(() => {
+      if(finalData){
+      const radarChartOptions = generateOptions(finalData.lines)
+      drawRadarChart('.radarChart1', finalData.areas, radarChartOptions, svgRef)}
+    }, [finalData]);
    
 
   return (<>
@@ -83,6 +85,7 @@ const RadarChart = (props) => {
     <button className="displayDataButton" onClick={() => props.graphIdLinesIdPointsData(1, 2)}>fetch graph-id / lines-id / points</button>
     <button className="displayDataButton" onClick={() => props.graphIdAreasIdPointsData(1, 2)}>fetch graph-id / areas-id / points</button>
     <button className="displayDataButton" onClick={() => console.log(props)}>check props</button>
+    <button className="displayDataButton" onClick={() => console.log(finalData)}>check finalData</button>
 
     <button className="displayDataButton" onClick={() => console.log(props, graphArray, pointArray)}>graph array point array</button>
     <button className="displayDataButton" onClick={() => console.log(props)}>props</button>
